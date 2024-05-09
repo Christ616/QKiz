@@ -1,37 +1,27 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using QKiz.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace QKiz.Pages
 {
-    public class Solicitud
-    {
-        public int Id { get; set; }
-        public string Nombre { get; set; }
-        public string ApellidoP { get; set; }
-        public string ApellidoM { get; set; }
-        public int Sexo_id { get; set; }
-        public string NSS { get; set; }
-        public string RFC { get; set; }
-        public string Telefono { get; set; }
-        public string Email { get; set; }
-    }
     public class rhModel : PageModel
     {
-        public List<Solicitud> Solicitudes { get; set; }
+        private readonly BdQkizContext _context;
 
-        private readonly ILogger<rhModel> _logger;
-                
-        public rhModel(ILogger<rhModel> logger)
+        public List<Empleado> Empleados { get; set; }
+
+        public rhModel(BdQkizContext context)
         {
-            Solicitudes = new List<Solicitud>();
-
-            _logger = logger;
+            _context = context;
+            Empleados = new List<Empleado>();
         }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-
+            // Obtener la lista de empleados desde la base de datos
+            Empleados = await _context.Empleados.ToListAsync();
         }
     }
 }

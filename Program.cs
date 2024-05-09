@@ -1,16 +1,14 @@
 using Microsoft.EntityFrameworkCore;
-using QKiz.Modelo;
+using Microsoft.Extensions.Options;
+using QKiz.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration.GetConnectionString("MySQLConnection");
-builder.Services.AddDbContext<Db_QKizContext>(options =>
-{
-    options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 0)));
-});
-
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+builder.Services.AddDbContext<BdQkizContext>(options =>
+    options.UseMySql(builder.Configuration.GetConnectionString("conexion"), Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.37-mysql")));
 
 var app = builder.Build();
 

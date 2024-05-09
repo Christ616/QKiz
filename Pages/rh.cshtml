@@ -1,7 +1,7 @@
 ﻿@page
 @model QKiz.Pages.rhModel
 @{
-    ViewData["Title"] = "Registro de solicitudes";
+    ViewData["Title"] = "Registro de Empleados";
 }
 
 <div class="container">
@@ -14,32 +14,27 @@
                 <th>Nombre</th>
                 <th>Apellido Paterno</th>
                 <th>Apellido Materno</th>
-                <th>Sexo</th>
                 <th>NSS</th>
                 <th>RFC</th>
                 <th>Teléfono</th>
                 <th>Email</th>
-                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.Solicitudes)
+            @foreach (var empleado in Model.Empleados)
             {
                 <tr>
-                    <td>@item.Id</td>
-                    <td>@item.Nombre</td>
-                    <td>@item.ApellidoP</td>
-                    <td>@item.ApellidoM</td>
-                    <td>@item.Sexo_id</td>
-                    <td>@item.NSS</td>
-                    <td>@item.RFC</td>
-                    <td>@item.Telefono</td>
-                    <td>@item.Email</td>
-                    <td>
-                        <a asp-page="./Editar" asp-route-id="@item.Id">Editar</a> |
-                        <a asp-page="./Eliminar" asp-route-id="@item.Id">Eliminar</a>
-                    </td>
+                    <td>@empleado.Id</td>
+                    <td>@empleado.Nombre</td>
+                    <td>@empleado.Apellidop</td>
+                    <td>@empleado.Apellidom</td>
+                    <td>@empleado.Nss</td>
+                    <td>@empleado.Rfc</td>
+                    <td>@empleado.Telefono</td>
+                    <td>@empleado.Email</td>
+                    
                 </tr>
+
             }
         </tbody>
     </table>
