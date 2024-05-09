@@ -1,0 +1,39 @@
+Sexo
+
+Crear registro - INSERT INTO sexo (genero) VALUES (?);
+
+Leer registros - SELECT * FROM sexo WHERE id = ?;
+
+Actualizar un registro - UPDATE sexo SET genero = ? WHERE id = ?;
+
+Eliminar un registro - DELETE FROM sexo WHERE id = ?;
+
+---
+
+Dirección
+
+Crear un registro - INSERT INTO direccion (calle, numext, numint, cp, colonia, ciudad, estado) 
+VALUES (?, ?, ?, ?, ?, ?, ?);
+
+Leer un registro - SELECT * FROM direccion WHERE id = ?;
+
+Actualizar un registro - UPDATE direccion 
+SET calle = ?, numext = ?, numint = ?, cp = ?, colonia = ?, ciudad = ?, estado = ? 
+WHERE id = ?;
+
+Eliminar un registro - DELETE FROM direccion WHERE id = ?;
+
+---
+
+Empleado
+
+Crear un registro - INSERT INTO empleado (nombre, apellidop, apellidom, sexo_id, nss, rfc, telefono, email, direccion_id) 
+VALUES (?, ?, ?, ?, ?, ?, ?);
+
+Leer registros - SELECT * FROM empleado WHERE id = ?;
+
+Actualizar un registro - UPDATE empleado 
+SET nombre = ?, apellidop = ?, apellidom = ?, sexo_id = ?, nss = ?, rfc = ?, telefono = ?, email = ?, direccion_id = ? 
+WHERE id = ?;
+
+Eliminar un registro - DELETE FROM empleado WHERE id = ?;

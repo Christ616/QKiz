@@ -1,12 +1,84 @@
 ﻿@page
-@model ErrorModel
+@using QKiz.Pages
+@model QKiz.Pages.EmpleadosModel
 @{
-    ViewData["Title"] = "Empleados";
+    ViewData["Title"] = "Registra tu solicitud aquí:";
 }
 
 <div class="container">
     <h1 style="margin-top: 160px">@ViewData["Title"]</h1>
+    <br>
+    <form method="POST" class="post">
+        <div class="row">
+            <div class="col">
+                <label for="name" runat="server" class="form-label">Nombre(s): <sup class="text-danger">*</sup></label>
+                <input type="text" runat="server" name="name" id="name" class="form-control" placeholder="Pedro" required="">
+            </div>
+            <div class="col">
+                <label for="apellidop" runat="server" class="form-label">Apellido Paterno: <sup class="text-danger">*</sup></label>
+                <input type="text" runat="server" name="apellidop" id="apellidop" class="form-control" placeholder="Gonzalez" required="">
+            </div>
+            <div class="col">
+                <label for="apellidom" runat="server" class="form-label">Apellido Materno: <sup class="text-danger">*</sup></label>
+                <input type="text" runat="server" name="apellidom" id="apellidom" class="form-control" placeholder="Perez" required="">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col">
+                <label for="sexo" runat="server" class="form-label">Sexo: <sup class="text-danger">*</sup></label>
+                @* <asp:DropBoxList ID="DblSexo" runat="server" CssClass="form-control"></asp:DropBoxList> *@
+                <select name="sexo" runat="server" id="sexo" class="form-control" required="">
+                    <option value="">Selecciona una opción</option>
+                    <option value="masculino">Masculino</option>
+                    <option value="femenino">Femenino</option>
+                    <option value="no-especificado">No especificar</option>
+                </select>
+            </div>
+            <div class="col">
+                <label for="nss" runat="server" class="form-label">Número de Seguro (NSS): <sup class="text-danger">*</sup></label>
+                <input type="text" runat="server" name="nss" id="nss" class="form-control" placeholder="Ejemplo:2158749" required="">
+            </div>
+            <div class="col">
+                <label for="rfc" runat="server" class="form-label">RFC: <sup class="text-danger">*</sup></label>
+                <input type="text" runat="server" name="rfc" id="rfc" class="form-control" placeholder="xxxx901025al0" required="">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col">
+                <label for="telefono" runat="server" class="form-label">Teléfono: <sup class="text-danger">*</sup></label>
+                <input type="text" runat="server" name="telefono" id="telefono" class="form-control" placeholder="3322110099" required="">
+            </div>
+            <div class="col">
+                <label for="email" runat="server" class="form-label">Correo Electronico: <sup class="text-danger">*</sup></label>
+                <input type="text" runat="server" name="email" id="email" class="form-control" placeholder="pedro@gmail.com" required="">
+            </div>
+            <div class="col">
 
-    <p style="color:lightgray">Aquí va el CRUD.</p>
-    
+                <div class="row">
+                    <div class="col" style="padding:0">
+                        <br>
+                        <p style="font-size:x-small; color:black; text-align:end">Al presionar envia terminos y c</p>
+                    </div>
+                    <div class="col" style="padding:0">
+                        <br>
+                        <p style="font-size:x-small; color:black"> r aceptas nuestros ondiciones</p>
+                    </div>
+                    <div class="col">
+                        <br>
+                        <button type="submit" class="btn btn-dark" name="BtnEnviar">Enviar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    @if (ViewData["ConnectionMessage"] != null)
+    {
+        <div class="row">
+            <div class="col">
+                <p>@ViewData["ConnectionMessage"]</p>
+            </div>
+        </div>
+    }
 </div>

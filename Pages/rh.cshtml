@@ -1,0 +1,46 @@
+﻿@page
+@model QKiz.Pages.rhModel
+@{
+    ViewData["Title"] = "Registro de solicitudes";
+}
+
+<div class="container">
+    <h2 style="margin-top: 160px">@ViewData["Title"]</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>Sexo</th>
+                <th>NSS</th>
+                <th>RFC</th>
+                <th>Teléfono</th>
+                <th>Email</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Solicitudes)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Nombre</td>
+                    <td>@item.ApellidoP</td>
+                    <td>@item.ApellidoM</td>
+                    <td>@item.Sexo_id</td>
+                    <td>@item.NSS</td>
+                    <td>@item.RFC</td>
+                    <td>@item.Telefono</td>
+                    <td>@item.Email</td>
+                    <td>
+                        <a asp-page="./Editar" asp-route-id="@item.Id">Editar</a> |
+                        <a asp-page="./Eliminar" asp-route-id="@item.Id">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

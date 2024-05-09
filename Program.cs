@@ -1,4 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using QKiz.Modelo;
+
 var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("MySQLConnection");
+builder.Services.AddDbContext<Db_QKizContext>(options =>
+{
+    options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 0)));
+});
 
 // Add services to the container.
 builder.Services.AddRazorPages();
@@ -14,6 +23,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
 app.UseStaticFiles();
 
 app.UseRouting();

@@ -1,28 +1,43 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Diagnostics;
+using Microsoft.Extensions.Logging;
+using QKiz.Modelo;
+using static QKiz.Modelo.Db_QKizContext;
 
 namespace QKiz.Pages
 {
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    [IgnoreAntiforgeryToken]
-    public class ErrorModel : PageModel
+    public class EmpleadosModel : PageModel
     {
-        public string? RequestId { get; set; }
+        private readonly Db_QKizContext _context;
+        private readonly ILogger<EmpleadosModel> _logger;
 
-        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
-
-        private readonly ILogger<ErrorModel> _logger;
-
-        public ErrorModel(ILogger<ErrorModel> logger)
+        public EmpleadosModel(Db_QKizContext context, ILogger<EmpleadosModel> logger)
         {
+            _context = context;
             _logger = logger;
         }
 
+        [BindProperty]
+        public Empleado Empleado { get; set; }
+
         public void OnGet()
         {
-            RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
+        }
+
+        [HttpPost]
+        public IActionResult OnPost()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            _context.Empleados.Add(Empleado);
+            _context.SaveChanges();
+            System.Diagnostics.Debug.WriteLine("xdxdxdxdxd");
+
+            ViewData["ConnectionMessage"] = "Datos guardados correctamente.";
+            return Page();
         }
     }
-
 }
